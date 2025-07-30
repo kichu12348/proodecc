@@ -226,7 +226,6 @@
 
 .introText {
  opacity: 1;
- letter-spacing: 0.1rem;
 }
 
 @media (max-width: 768px) {

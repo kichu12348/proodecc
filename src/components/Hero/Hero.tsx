@@ -375,7 +375,7 @@ const HeroSection = () => {
 
       {/* Part 1: Introduction */}
       <div className={styles.introTextContainer}>
-        <span className={styles.introText}>WELCOME TO CEC</span>
+        <span className={styles.introText}>WELCOME TO COLLEGE OF ENGINEERING CHENGANNUR</span>
         <span className={styles.cursor}>|</span>
       </div>
       <img
