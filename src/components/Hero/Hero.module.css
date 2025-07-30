@@ -638,11 +638,11 @@
 
 @media (max-width: 480px) {
   .finalText {
-    font-size: 0.9rem;
+    font-size: 1.3rem;
     margin-top: 1rem;
   }
   .finalSubtext {
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin-bottom: 1.5rem;
   }
 }
@@ -693,4 +693,41 @@
   .speechBubbleSpark { top: 45%; right: 20%; } /* Changed top from 20% to 30% */
   .speechBubbleSyntax { top: 45%; left: 30%; } /* Changed top from 10% to 20% */
   .speechBubbleLex2 { top: 50%; left: 50%; } /* Changed top from 25% to 35% */
+}
+
+
+/* --- NEW: Glimpses Section (Revised for Slideshow) --- */
+.glimpsesContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 60vh; /* Defines a viewport height for the animation canvas */
+  visibility: hidden;
+}
+
+.glimpseImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;   /* Max width relative to the container */
+  max-height: 100%;  /* Max height relative to the container */
+  width: auto;
+  height: auto;
+  border: 4px solid #66D9EF; /* Cyan border */
+  box-shadow: 6px 6px 0 #272822;
+  visibility: hidden;  /* Important for GSAP's autoAlpha */
+  object-fit: contain; /* Ensures entire image is visible without stretching */
+}
+
+@media (max-width: 768px) {
+  .glimpsesContainer {
+    height: 50vh;
+  }
+
+  .glimpseImage {
+    left: 55%;
+  }
 }
