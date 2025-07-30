@@ -309,7 +309,7 @@ const HeroSection = () => {
         scrollTrigger: {
           trigger: mainRef.current,
           start: "top top",
-          end: "+=35000",
+          end: "+=20000",
           scrub: 1,
           pin: true,
         },
