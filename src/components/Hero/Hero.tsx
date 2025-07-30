@@ -26,6 +26,10 @@ const initIntroAnimation = (tl: gsap.core.Timeline) => {
     // Initial PRODDEC text animation
     .to(`.${styles.cursor}`, { opacity: 0.5 }, "<") // Starts simultaneously with the fade out
     .to(`.${styles.introText}`, {
+      duration: 2, // This creates a 2-second pause
+      ease: "none",
+    })
+    .to(`.${styles.introText}`, {
       text: "INITIATING PRODDEC...",
       duration: 2,
       ease: "none",
@@ -43,7 +47,11 @@ const initIntroAnimation = (tl: gsap.core.Timeline) => {
       { autoAlpha: 0, scale: 0 },
       { autoAlpha: 1, scale: 1, duration: 0.5 }
     )
-    .to(`.${styles.speechBubbleLex1}`, { autoAlpha: 0, scale: 0, duration: 0.5 }, "+=3")
+    .to(
+      `.${styles.speechBubbleLex1}`,
+      { autoAlpha: 0, scale: 0, duration: 0.5 },
+      "+=3"
+    )
     // Spark Appears
     .to(`.${styles.lex}`, { autoAlpha: 0, y: "100%", duration: 0.5 })
     .fromTo(
@@ -62,7 +70,11 @@ const initIntroAnimation = (tl: gsap.core.Timeline) => {
       { autoAlpha: 0, scale: 0 },
       { autoAlpha: 1, scale: 1, duration: 0.5 }
     )
-    .to(`.${styles.speechBubbleSpark}`, { autoAlpha: 0, scale: 0, duration: 0.5 }, "+=3")
+    .to(
+      `.${styles.speechBubbleSpark}`,
+      { autoAlpha: 0, scale: 0, duration: 0.5 },
+      "+=3"
+    )
     // Syntax Appears
     .to(`.${styles.spark}`, { autoAlpha: 0, y: "100%", duration: 0.5 })
     .fromTo(
@@ -81,7 +93,11 @@ const initIntroAnimation = (tl: gsap.core.Timeline) => {
       { autoAlpha: 0, scale: 0 },
       { autoAlpha: 1, scale: 1, duration: 0.5 }
     )
-    .to(`.${styles.speechBubbleSyntax}`, { autoAlpha: 0, scale: 0, duration: 0.5 }, "+=3")
+    .to(
+      `.${styles.speechBubbleSyntax}`,
+      { autoAlpha: 0, scale: 0, duration: 0.5 },
+      "+=3"
+    )
     // The Collaboration
     .to(`.${styles.syntax}`, { autoAlpha: 0, duration: 0.5 })
     .fromTo(
@@ -108,7 +124,11 @@ const initIntroAnimation = (tl: gsap.core.Timeline) => {
       { autoAlpha: 0, scale: 0 },
       { autoAlpha: 1, scale: 1, duration: 0.5 }
     )
-    .to(`.${styles.speechBubbleLex2}`, { autoAlpha: 0, scale: 0, duration: 0.5 }, "+=3")
+    .to(
+      `.${styles.speechBubbleLex2}`,
+      { autoAlpha: 0, scale: 0, duration: 0.5 },
+      "+=3"
+    )
     // Cleanup Scene 1
     .to([`.${styles.lex}`, `.${styles.workbench}`, `.${styles.monitor}`], {
       autoAlpha: 0,
@@ -123,13 +143,16 @@ const initIntroAnimation = (tl: gsap.core.Timeline) => {
  * @param tl - The main GSAP timeline.
  */
 const initAboutSection = (tl: gsap.core.Timeline) => {
-  tl
+  tl.fromTo(
+    `.${styles.sectionTitle}`,
+    { autoAlpha: 0 },
+    { autoAlpha: 1, text: "ABOUT PRODDEC", duration: 1 }
+  )
     .fromTo(
-      `.${styles.sectionTitle}`,
+      `.${styles.aboutContainer}`,
       { autoAlpha: 0 },
-      { autoAlpha: 1, text: "ABOUT PRODDEC", duration: 1 }
+      { autoAlpha: 1, duration: 0.5 }
     )
-    .fromTo(`.${styles.aboutContainer}`, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 })
     .fromTo(
       `.${styles.aboutText}`,
       { autoAlpha: 0 },
@@ -142,7 +165,7 @@ const initAboutSection = (tl: gsap.core.Timeline) => {
     .to(
       `.${styles.aboutDescription}`,
       {
-        text: "PRODDEC is the premier forum at College of Engineering Chengannur fostering innovation across Electrical, Electronics, and Computer Science.",
+        text: "PRODDEC is the premier forum at College of Engineering Chengannur fostering innovation across Electrical, Electronics, and Computer Science Since 1999. We empower students to transform ideas into impactful products through hands-on projects, mentorship, and collaboration.",
         duration: 3,
       },
       "+=0.5"
@@ -157,13 +180,16 @@ const initAboutSection = (tl: gsap.core.Timeline) => {
  * @param tl - The main GSAP timeline.
  */
 const initDomainsSection = (tl: gsap.core.Timeline) => {
-  tl
+  tl.fromTo(
+    `.${styles.sectionTitle}`,
+    { autoAlpha: 0 },
+    { autoAlpha: 1, text: "OUR DOMAINS", duration: 1 }
+  )
     .fromTo(
-      `.${styles.sectionTitle}`,
+      `.${styles.domainsContainer}`,
       { autoAlpha: 0 },
-      { autoAlpha: 1, text: "OUR DOMAINS", duration: 1 }
+      { autoAlpha: 1, duration: 0.5 }
     )
-    .fromTo(`.${styles.domainsContainer}`, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 })
     .fromTo(
       `.${styles.domainCard}`,
       { autoAlpha: 0, y: 100 },
@@ -179,13 +205,16 @@ const initDomainsSection = (tl: gsap.core.Timeline) => {
  * @param tl - The main GSAP timeline.
  */
 const initTeamSection = (tl: gsap.core.Timeline) => {
-  tl
+  tl.fromTo(
+    `.${styles.sectionTitle}`,
+    { autoAlpha: 0 },
+    { autoAlpha: 1, text: "THE GUILD", duration: 1 }
+  )
     .fromTo(
-      `.${styles.sectionTitle}`,
+      `.${styles.teamContainer}`,
       { autoAlpha: 0 },
-      { autoAlpha: 1, text: "THE GUILD", duration: 1 }
+      { autoAlpha: 1, duration: 0.5 }
     )
-    .fromTo(`.${styles.teamContainer}`, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 })
     .fromTo(
       `.${styles.teamCard}`,
       { autoAlpha: 0, y: 100 },
@@ -211,13 +240,16 @@ const initFaqSection = (
   );
   const selector = mainRef.current?.querySelector(`.${styles.faqSelector}`);
 
-  tl
+  tl.fromTo(
+    `.${styles.sectionTitle}`,
+    { autoAlpha: 0 },
+    { autoAlpha: 1, text: "WHY JOIN PRODDEC?", duration: 1 }
+  )
     .fromTo(
-      `.${styles.sectionTitle}`,
+      `.${styles.faqContainer}`,
       { autoAlpha: 0 },
-      { autoAlpha: 1, text: "WHY JOIN PRODDEC?", duration: 1 }
+      { autoAlpha: 1, duration: 0.5 }
     )
-    .fromTo(`.${styles.faqContainer}`, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 })
     .fromTo(
       `.${styles.lexFaq}`,
       { autoAlpha: 0, y: "100%" },
@@ -225,9 +257,12 @@ const initFaqSection = (
     );
 
   // Question 1
-  tl
-    .to(selector, { top: questions[0]?.offsetTop || 0, duration: 0.5 })
-    .fromTo(`.${styles.faqAnswerBox}`, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.2 })
+  tl.to(selector, { top: questions[0]?.offsetTop || 0, duration: 0.5 })
+    .fromTo(
+      `.${styles.faqAnswerBox}`,
+      { autoAlpha: 0 },
+      { autoAlpha: 1, duration: 0.2 }
+    )
     .to(`.${styles.faqAnswerText}`, {
       text: "No experience needed! We provide mentorship and hands-on training in all domains.",
       duration: 3,
@@ -235,9 +270,12 @@ const initFaqSection = (
     .to(`.${styles.faqAnswerBox}`, { autoAlpha: 0, duration: 0.2 }, "+=1");
 
   // Question 2
-  tl
-    .to(selector, { top: questions[1]?.offsetTop || 40, duration: 0.5 })
-    .fromTo(`.${styles.faqAnswerBox}`, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.2 })
+  tl.to(selector, { top: questions[1]?.offsetTop || 40, duration: 0.5 })
+    .fromTo(
+      `.${styles.faqAnswerBox}`,
+      { autoAlpha: 0 },
+      { autoAlpha: 1, duration: 0.2 }
+    )
     .to(`.${styles.faqAnswerText}`, {
       text: "Work on real-world projects, build your portfolio, and gain industry-relevant skills.",
       duration: 3,
@@ -245,9 +283,12 @@ const initFaqSection = (
     .to(`.${styles.faqAnswerBox}`, { autoAlpha: 0, duration: 0.2 }, "+=1");
 
   // Question 3
-  tl
-    .to(selector, { top: questions[2]?.offsetTop || 80, duration: 0.5 })
-    .fromTo(`.${styles.faqAnswerBox}`, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.2 })
+  tl.to(selector, { top: questions[2]?.offsetTop || 80, duration: 0.5 })
+    .fromTo(
+      `.${styles.faqAnswerBox}`,
+      { autoAlpha: 0 },
+      { autoAlpha: 1, duration: 0.2 }
+    )
     .to(`.${styles.faqAnswerText}`, {
       text: "Join a community of innovators and connect with like-minded engineering students.",
       duration: 3,
@@ -255,8 +296,7 @@ const initFaqSection = (
     .to(`.${styles.faqAnswerBox}`, { autoAlpha: 0, duration: 0.2 }, "+=1");
 
   // Cleanup
-  tl
-    .to(`.${styles.sectionTitle}`, { autoAlpha: 0, duration: 0.5 })
+  tl.to(`.${styles.sectionTitle}`, { autoAlpha: 0, duration: 0.5 })
     .to(`.${styles.faqContainer}`, { autoAlpha: 0, duration: 0.5 })
     .to(`.${styles.lexFaq}`, { autoAlpha: 0, duration: 0.5 }, "<");
 };
@@ -266,12 +306,11 @@ const initFaqSection = (
  * @param tl - The main GSAP timeline.
  */
 const initRecruitmentSection = (tl: gsap.core.Timeline) => {
-  tl
-    .fromTo(
-      `.${styles.finalLogo}`,
-      { autoAlpha: 0, scale: 0 },
-      { autoAlpha: 1, scale: 1, ease: "back.out", duration: 1 }
-    )
+  tl.fromTo(
+    `.${styles.finalLogo}`,
+    { autoAlpha: 0, scale: 0 },
+    { autoAlpha: 1, scale: 1, ease: "back.out", duration: 1 }
+  )
     .fromTo(
       `.${styles.finalCharacters} img`,
       { autoAlpha: 0, y: 100 },
@@ -297,7 +336,6 @@ const initRecruitmentSection = (tl: gsap.core.Timeline) => {
       { autoAlpha: 1, scale: 1, ease: "elastic.out", duration: 1 }
     );
 };
-
 
 // --- Main Component ---
 const HeroSection = () => {
@@ -331,13 +369,13 @@ const HeroSection = () => {
     <div ref={mainRef} className={`${styles.container} background`}>
       {/* --- NEW: Scroll Down Indicator --- */}
       <div className={styles.scrollIndicator}>
-        <span>SCROLL DOWN</span>
+        <span>SWIPE DOWN</span>
         <div className={styles.scrollChevron}></div>
       </div>
 
       {/* Part 1: Introduction */}
       <div className={styles.introTextContainer}>
-        <span className={styles.introText}></span>
+        <span className={styles.introText}>WELCOME TO CEC</span>
         <span className={styles.cursor}>|</span>
       </div>
       <img
