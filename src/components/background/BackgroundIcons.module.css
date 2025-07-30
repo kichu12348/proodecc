@@ -1,0 +1,157 @@
+/* BackgroundIcons.module.css */
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(10, 15, 30, 0.2) 0%, rgba(5, 10, 20, 0) 70%);
+}
+
+.layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  transition: transform 0.05s ease-out;
+}
+
+.layer1 {
+  z-index: 1;
+}
+
+.layer2 {
+  z-index: 2;
+}
+
+.layer3 {
+  z-index: 3;
+}
+
+.iconWrapper {
+  position: absolute;
+  will-change: transform;
+  transition: opacity 0.3s ease;
+}
+
+.iconInner {
+  width: 100%;
+  height: 100%;
+  color: #66D9EF;
+  filter: drop-shadow(0 0 3px rgba(102, 217, 239, 0.3));
+  transition: all 0.3s ease;
+  will-change: transform, color;
+}
+
+.iconInner:hover {
+  color: #A6E22E;
+  filter: drop-shadow(0 0 8px rgba(166, 226, 46, 0.5));
+  transform: scale(1.3);
+}
+
+/* Animations for floating icons */
+@keyframes floatHorizontal {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(10px) rotate(5deg);
+  }
+  50% {
+    transform: translateX(20px) rotate(0deg);
+  }
+  75% {
+    transform: translateX(10px) rotate(-5deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes floatVertical {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(15px) rotate(10deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes floatCircular {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(10px, 10px) rotate(90deg);
+  }
+  50% {
+    transform: translate(0, 20px) rotate(180deg);
+  }
+  75% {
+    transform: translate(-10px, 10px) rotate(270deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(102, 217, 239, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(102, 217, 239, 0.6));
+  }
+  100% {
+    filter: drop-shadow(0 0 2px rgba(102, 217, 239, 0.3));
+  }
+}
+
+.floatHorizontal {
+  animation: floatHorizontal var(--duration, 30s) infinite alternate ease-in-out;
+}
+
+.floatVertical {
+  animation: floatVertical var(--duration, 40s) infinite alternate ease-in-out;
+}
+
+.floatCircular {
+  animation: floatCircular var(--duration, 50s) infinite linear;
+}
+
+.iconInner svg {
+  width: 100%;
+  height: 100%;
+  animation: pulse 5s infinite ease-in-out;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Create occasional glitch effect for random icons */
+.iconWrapper:nth-child(7n) .iconInner {
+  animation: glitch 10s infinite;
+}
+
+@keyframes glitch {
+  0%, 100% {
+    transform: translate(0, 0) skew(0deg);
+    filter: drop-shadow(0 0 3px rgba(102, 217, 239, 0.3));
+  }
+  2%, 4% {
+    transform: translate(-3px, 2px) skew(2deg);
+    filter: drop-shadow(-3px 0 3px rgba(255, 100, 100, 0.5));
+  }
+  3% {
+    transform: translate(3px, -2px) skew(-2deg);
+    filter: drop-shadow(3px 0 3px rgba(100, 255, 100, 0.5));
+  }
+  5% {
+    transform: translate(0, 0) skew(0deg);
+  }
+}

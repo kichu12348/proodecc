@@ -1,0 +1,696 @@
+/* ... (container styles are the same) ... */
+.container {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  color: #F8F8F2;
+  font-family: 'VT323', monospace;
+  overflow: hidden;
+}
+
+
+/* --- NEW: Scroll Down Indicator --- */
+.scrollIndicator {
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  color: #F8F8F2;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  text-align: center;
+  animation: subtleBlink 2s infinite;
+}
+
+.scrollChevron {
+  width: 8px;
+  height: 8px;
+  border: solid #F8F8F2;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  margin: 10px auto 0;
+}
+
+@keyframes subtleBlink {
+  50% {
+    opacity: 0.7;
+  }
+}
+/* --- END NEW STYLES --- */
+
+
+/* Universal Styles */
+/* ... (rest of the CSS is unchanged) ... */
+.character {
+  position: absolute;
+  bottom: 0;
+  height: 65vh;
+  max-height: 550px;
+  will-change: transform, opacity;
+  visibility: hidden; /* GSAP uses autoAlpha to handle this efficiently */
+  /* Pixelated effect */
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Responsive character positioning */
+.lex { left: 5%; }
+.spark { right: 5%; }
+.syntax { left: 20%; }
+
+@media (max-width: 768px) {
+  .character {
+    height: 50vh;
+    max-height: 400px;
+  }
+  .lex { left: 2%; }
+  .spark { right: 2%; }
+  .syntax { left: 15%; }
+}
+
+@media (max-width: 480px) {
+  .character {
+    height: 40vh;
+    max-height: 300px;
+  }
+  .lex { left: 1%; }
+  .spark { right: 1%; }
+  .syntax { left: 10%; }
+}
+
+.speechBubble {
+  position: absolute;
+  background: #F8F8F2;
+  color: #272822;
+  padding: 15px 20px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  border: 4px solid #272822;
+  box-shadow: 6px 6px 0 #F92672;
+  visibility: hidden;
+  max-width: 300px;
+  z-index: 10;
+}
+
+/* Responsive speech bubbles */
+@media (max-width: 768px) {
+  .speechBubble {
+    font-size: 0.6rem;
+    padding: 10px 15px;
+    max-width: 250px;
+    box-shadow: 4px 4px 0 #F92672;
+  }
+}
+
+@media (max-width: 480px) {
+  .speechBubble {
+    font-size: 0.5rem;
+    padding: 8px 12px;
+    max-width: 200px;
+    box-shadow: 3px 3px 0 #F92672;
+  }
+}
+
+.speechBubbleLex1 { top: 20%; left: 25%; }
+.speechBubbleSpark { top: 25%; right: 25%; }
+.speechBubbleSyntax { top: 15%; left: 38%; }
+.speechBubbleLex2 { top: 30%; left: 50%; transform: translateX(-50%); }
+
+@media (max-width: 768px) {
+  .speechBubbleLex1 { top: 15%; left: 20%; }
+  .speechBubbleSpark { top: 20%; right: 20%; }
+  .speechBubbleSyntax { top: 10%; left: 30%; }
+  .speechBubbleLex2 { top: 25%; left: 50%; }
+}
+
+.pixelArt {
+  position: absolute;
+  will-change: transform, opacity;
+  visibility: hidden;
+}
+
+.workbench {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 100px;
+  background: #4d4d4d;
+  border: 4px solid #272822;
+}
+
+.monitor {
+  bottom: 100px;
+  left: 40%;
+  width: 200px;
+  height: 150px;
+  background: #3a3a3a;
+  border: 4px solid #272822;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Responsive pixel art */
+@media (max-width: 768px) {
+  .workbench {
+    width: 300px;
+    height: 80px;
+  }
+  .monitor {
+    width: 150px;
+    height: 120px;
+    left: 30%;
+    bottom: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .workbench {
+    width: 250px;
+    height: 60px;
+  }
+  .monitor {
+    width: 120px;
+    height: 90px;
+    left: 25%;
+    bottom: 60px;
+  }
+}
+
+.monitorScreen {
+  width: 85%;
+  height: 75%;
+  margin: 10px auto;
+  background: url("/monitor.png") no-repeat center center / cover;
+}
+
+.progressBar {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 20px;
+  border: 2px solid #F8F8F2;
+}
+
+.progressBarInner {
+  width: 0%;
+  height: 100%;
+  background: #A6E22E;
+}
+
+.botPixel {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  background: #888;
+  border: 2px solid #272822;
+}
+
+/* Part 1 Specific */
+.introTextContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.introText {
+ opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .introTextContainer {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .introTextContainer {
+    font-size: 1rem;
+  }
+}
+
+.cursor {
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Section Titles - Responsive */
+.sectionTitle {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 3rem;
+  color: #F92672;
+  visibility: hidden;
+  text-align: center;
+  width: 90%; /* Ensure text wraps on smaller screens */
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 2rem;
+    top: 8%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: 1.2rem;
+    top: 5%;
+  }
+}
+
+/* About PRODDEC Section */
+.aboutContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  visibility: hidden;
+  width: 80%;
+}
+
+.aboutText {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2rem;
+  color: #66D9EF;
+  margin-bottom: 2rem;
+}
+
+.aboutDescription {
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: #F8F8F2;
+}
+
+@media (max-width: 768px) {
+  .aboutText {
+    font-size: 1.5rem;
+  }
+  .aboutDescription {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .aboutText {
+    font-size: 1rem;
+  }
+  .aboutDescription {
+    font-size: 1rem;
+  }
+}
+
+/* Domains Section */
+.domainsContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 30px;
+  visibility: hidden;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90%;
+}
+
+.domainCard {
+  width: 250px;
+  padding: 20px;
+  border: 4px solid #A6E22E;
+  background: #3a3a3a;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  text-align: center;
+  visibility: hidden;
+}
+
+.domainCard h4 {
+  color: #A6E22E;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .domainsContainer {
+    gap: 20px;
+  }
+  .domainCard {
+    width: 200px;
+    padding: 15px;
+    font-size: 0.6rem;
+  }
+  .domainCard h4 {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .domainsContainer {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+  .domainCard {
+    width: 280px;
+    padding: 12px;
+    font-size: 0.5rem;
+  }
+  .domainCard h4 {
+    font-size: 0.6rem;
+  }
+}
+
+
+
+/* Team Section - Updated */
+.teamContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 30px;
+  visibility: hidden;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90%;
+}
+
+.teamCard {
+  width: 200px;
+  padding: 20px;
+  border: 4px solid #A6E22E;
+  background: #3a3a3a;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  visibility: hidden;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .teamContainer {
+    gap: 20px;
+  }
+  .teamCard {
+    width: 180px;
+    padding: 15px;
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .teamContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  .teamCard {
+    width: 250px;
+    padding: 12px;
+    font-size: 0.5rem;
+  }
+}
+
+/* FAQ Section - Updated */
+.faqContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
+
+.lexFaq {
+  left: 10%;
+  visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .lexFaq {
+    left: 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .lexFaq {
+    display: none; /* Hide character on very small screens to make space for text */
+  }
+}
+
+.faqQuestions {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  line-height: 2.5;
+  width: 80%;
+  max-width: 500px;
+}
+
+@media (max-width: 768px) {
+  .faqQuestions {
+    font-size: 0.8rem;
+    line-height: 2.2;
+  }
+}
+
+@media (max-width: 480px) {
+  .faqQuestions {
+    font-size: 0.6rem;
+    line-height: 2;
+    top: 25%;
+    transform: translateX(-45%);
+    width: 90%;
+  }
+}
+
+.faqSelector {
+  position: absolute;
+  left: -30px;
+  top: 0; /* Initial position for the first question */
+  color: #F92672;
+}
+
+@media (max-width: 480px) {
+  .faqSelector {
+    left: -20px;
+  }
+}
+
+.faqAnswerBox {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  min-height: 100px;
+  padding: 20px;
+  border: 4px solid #F8F8F2;
+  background: #272822;
+  visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .faqAnswerBox {
+    width: 400px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .faqAnswerBox {
+    width: 90%;
+    padding: 12px;
+    top: 55%; /* Adjust for smaller screens */
+  }
+}
+
+.faqAnswerText {
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .faqAnswerText {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .faqAnswerText {
+    font-size: 1rem;
+  }
+}
+
+/* Final Scene - Recruitment */
+.finalScene {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem; /* Add some padding for smaller screens */
+}
+
+.finalLogo {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 5rem;
+  color: #66D9EF;
+  margin-bottom: 2rem;
+  visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .finalLogo {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .finalLogo {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.finalCharacters {
+  display: flex;
+  align-items: flex-end;
+  gap: 2rem;
+  height: 40vh;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.finalCharacters img {
+  height: 100%;
+  max-height: 350px;
+  visibility: hidden;
+  /* Pixelated effect */
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+@media (max-width: 768px) {
+  .finalCharacters {
+    height: 30vh;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .finalCharacters {
+    height: 25vh;
+    gap: 1rem;
+  }
+}
+
+.finalText {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #F8F8F2;
+}
+
+.finalSubtext {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #A6E22E;
+}
+
+@media (max-width: 768px) {
+  .finalText {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+  }
+  .finalSubtext {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .finalText {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+  .finalSubtext {
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.finalButton {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.2rem;
+  padding: 20px 40px;
+  background: #A6E22E;
+  color: #272822;
+  border: none;
+  box-shadow: 8px 8px 0 #F92672;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  visibility: hidden;
+  text-decoration: none;
+}
+
+.finalButton:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 4px 4px 0 #F92672;
+}
+
+@media (max-width: 768px) {
+  .finalButton {
+    font-size: 1rem;
+    padding: 15px 30px;
+    box-shadow: 6px 6px 0 #F92672;
+  }
+  .finalButton:hover {
+    box-shadow: 3px 3px 0 #F92672;
+  }
+}
+
+@media (max-width: 480px) {
+  .finalButton {
+    font-size: 0.7rem;
+    padding: 12px 24px;
+    box-shadow: 4px 4px 0 #F92672;
+  }
+  .finalButton:hover {
+    box-shadow: 2px 2px 0 #F92672;
+  }
+}
+
+@media (max-width: 768px) {
+  .speechBubbleLex1 { top: 45%; left: 20%; } /* Changed top from 15% to 25% */
+  .speechBubbleSpark { top: 45%; right: 20%; } /* Changed top from 20% to 30% */
+  .speechBubbleSyntax { top: 45%; left: 30%; } /* Changed top from 10% to 20% */
+  .speechBubbleLex2 { top: 50%; left: 50%; } /* Changed top from 25% to 35% */
+}
