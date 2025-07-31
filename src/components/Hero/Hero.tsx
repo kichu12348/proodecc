@@ -329,6 +329,8 @@ const HeroSection = () => {
     return () => ctx.revert();
   }, []);
 
+  const handleBlick=()=>window.open("https://heyzine.com/flip-book/c8893b5d24.html","_blank");
+
   return (
     <div ref={mainRef} className={`${styles.container} background`}>
       {/* Scroll Down Indicator */}
@@ -455,7 +457,7 @@ const HeroSection = () => {
         </div>
         <p className={styles.finalText}></p>
         <p className={styles.finalSubtext}></p>
-        <a href="#join" className={styles.finalButton}>
+        <a onClick={handleBlick} className={styles.finalButton}>
           [ LEARN MORE... ]
         </a>
       </div>
